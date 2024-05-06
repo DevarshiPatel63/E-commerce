@@ -4,10 +4,11 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import logo from '../assets/logo.png';
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const categories = ["Women's Clothing","Men's Clothing", "Jewelry","Electronics" ];
-
+  const navigate = useNavigate()
   
   return (
     <AppBar sx={{ backgroundColor: '#0A2647' }} position="static">
@@ -34,7 +35,7 @@ const Navbar = () => {
 
         {/* Right side: Shopping Cart icon (Always visible) */}
         <Box sx={{display:'flex',justifyContent:'flex-end'}}>
-        <IconButton color="inherit">
+        <IconButton color="inherit" onClick={()=> {navigate('/fav')} }>
           <FavoriteBorderIcon/>
           </IconButton>
         <IconButton color="inherit">

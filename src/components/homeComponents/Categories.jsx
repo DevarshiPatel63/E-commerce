@@ -1,33 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext} from "react";
 import { Box, Button } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import ProductDisplay from "./ProductDisplay";
-
+import { AppContext } from "../../context/AppContext";
 
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const {categories , selectedCategory ,  handleCategoryClick} = useContext(AppContext)
 
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch(
-        "https://fakestoreapi.com/products/categories"
-      );
-      const data = await response.json();
-      setCategories(["All", ...data]);
-      console.log(data);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-  };
   return (
     <Box>
       <Box>
@@ -63,7 +42,6 @@ const Categories = () => {
           </Box>
         </Stack>
       </Box>
-      <ProductDisplay  category={selectedCategory}/>
     </Box>
   );
 };

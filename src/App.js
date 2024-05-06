@@ -1,14 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
-import Navbar from './components/Navbar';
-import Categories from './components/Categories';
-
+import AppContextProvider from './context/AppContext';
+import Home from './pages/Home';
+import Favourite from './pages/Favourite'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 function App() {
   return (
-    <div>
-      <Navbar/>
-      <Categories/>
-    </div>
+    <AppContextProvider> {/* Wrap your App component with AppContextProvider */}
+      <div>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/fav' element={<Favourite/>}/>
+        </Routes>
+      </Router>
+        
+      </div>
+    </AppContextProvider>
   );
 }
 
